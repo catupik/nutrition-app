@@ -4,6 +4,7 @@ import video from "./video.mp4";
 import Nutrients from "./Nutrients";
 import { LoaderPage } from "./Loader/LoaderPage";
 import Swal from "sweetalert2";
+import { useCallback } from "react";
 
 function App() {
   const MY_ID = "4f3d1de3";
@@ -15,7 +16,7 @@ function App() {
   const [myAnalysis, setMyAnalysis] = useState("");
   const [stateLoader, setStateLoader] = useState(false);
 
-  const fetchData = async (ingr) => {
+  const fetchData = useCallback(async (ingr) => {
     setStateLoader(true);
     const response = await fetch(
       `${APP_URL}?app_id=${MY_ID}&app_key=${MY_KEY}`,
@@ -37,7 +38,7 @@ function App() {
       setStateLoader(false);
       wrongIngredients();
     }
-  };
+  }, []);
 
   const analyzeMyFood = (e) => setMySearch(e.target.value);
 
@@ -57,7 +58,7 @@ function App() {
       let ingr = wordSubmitted.split(/[,;\n,\r]/);
       fetchData(ingr);
     }
-  }, [wordSubmitted]);
+  }, [wordSubmitted, fetchData]);
 
   const labelTransformations = {
     "Total lipid (fat)": "Fat",
