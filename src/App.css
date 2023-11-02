@@ -87,10 +87,14 @@ h1{
 
   @media all and (max-width: 600px){
       button{
-        width: 400px
+        width: 300px
       }
-      input{ width: 394px}
+      input{ width: 294px}
       .container {
         align-items: center;
+      }
+
+      h1 {
+        font-size: 25px;
       }
   }
