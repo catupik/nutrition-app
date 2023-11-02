@@ -107,7 +107,7 @@ function App() {
           <source src={video} type="video/mp4" />
         </video>
         <h1>Analyze what you eat</h1>
-        <div>
+        <div  className="container">
           <form className="container" onSubmit={finalSearch}>
             <input
               placeholder="LIST YOUR INGREDIENTS"
