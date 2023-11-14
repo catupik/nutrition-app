@@ -110,7 +110,7 @@ function App() {
         <div  className="container">
           <form className="container" onSubmit={finalSearch}>
             <input
-              placeholder="LIST YOUR INGREDIENTS"
+              placeholder="LIST YOUR INGREDIENTS..."
               onChange={analyzeMyFood}
             />
             <button type="submit">Analyze</button>
@@ -118,7 +118,7 @@ function App() {
         </div>
         <div className="blocks">
           <div className="block">
-            <h3>Main nutrients</h3>
+            <h3>MAIN NUTRIENTS</h3>
             {myAnalysis?.totalNutrients &&
               Object.values(myAnalysis.totalNutrients)
                 .filter(({ label }) => isPrimaryLabel(label))
@@ -133,7 +133,7 @@ function App() {
           </div>
 
           <div className="block">
-            <h3>Vitamins and minerals</h3>
+            <h3>VITAMINS & MINERALS</h3>
             {myAnalysis?.totalNutrients &&
               Object.values(myAnalysis.totalNutrients)
                 .filter(
