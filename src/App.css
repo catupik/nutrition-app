@@ -28,19 +28,27 @@ h1{
     left: 0;
     z-index: -1;
   }
-
+  
+  input {
+    background-color: rgba(255, 255, 255, 0.762);
+    border: none;
+  }
   button, input {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     text-transform: uppercase;
-    background-color: rgba(253, 253, 217, 0.623);
+    /* background-color: rgba(253, 253, 217, 0.623); */
     font-size: 25px;
-    border: 1px solid rgb(177, 177, 177);
+    
     border-radius: 12px;
     color: rgb(91, 90, 90);
     margin: 5px;
     padding: 12px;
     font-weight: bolder;
+  }
+  button {
+        background-color: rgba(244, 244, 204, 0.55);
+        border:none;
   }
 
   
