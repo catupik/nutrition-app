@@ -103,7 +103,7 @@ function App() {
     <div className="App">
       {stateLoader && <LoaderPage />}
       <div className="container">
-        <video autoPlay muted loop>
+        <video playsInline autoPlay muted loop>
           <source src={video} type="video/mp4" />
         </video>
         <h1>Analyze what you eat</h1>
