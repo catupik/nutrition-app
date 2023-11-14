@@ -92,4 +92,7 @@ h1{
         width: 160vw;
         margin-left: -190px
       }
+      p {
+        font-size: 20px;
+      }
   }
