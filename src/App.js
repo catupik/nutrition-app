@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import video from "./video.mp4";
 import Nutrients from "./Nutrients";
 import { LoaderPage } from "./Loader/LoaderPage";
 import Swal from "sweetalert2";
 import { useCallback } from "react";
+import gsap from "gsap";
 
 function App() {
   const MY_ID = "4f3d1de3";
@@ -15,6 +16,42 @@ function App() {
   const [wordSubmitted, setWordSubmitted] = useState("");
   const [myAnalysis, setMyAnalysis] = useState("");
   const [stateLoader, setStateLoader] = useState(false);
+
+  const headerRef = useRef(null);
+  const formRef = useRef(null);
+  const mainNutrientsRef = useRef(null);
+  const vitaminsRef = useRef(null);
+
+  useEffect(() => {
+    // Анимация заголовка
+    gsap.fromTo(
+      headerRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 40, duration: 1, ease: "power3.out", delay: 1}
+    );
+  
+    // Анимация формы ввода
+    gsap.fromTo(
+      formRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 40, duration: 1, ease: "power3.out", delay: 1.5 }
+    );
+  
+    // Анимация блока основных питательных веществ
+    gsap.fromTo(
+      mainNutrientsRef.current,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 20, duration: 1, ease: "power3.out", delay: 2 }
+    );
+  
+    // Анимация блока витаминов и минералов
+    gsap.fromTo(
+      vitaminsRef.current,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 20, duration: 1, ease: "power3.out", delay: 2 }
+    );
+  }, []);
+  
 
   const fetchData = useCallback(async (ingr) => {
     setStateLoader(true);
@@ -106,18 +143,18 @@ function App() {
         <video playsInline autoPlay muted loop>
           <source src={video} type="video/mp4" />
         </video>
-        <h1>Analyze what you eat</h1>
-        <div  className="container">
+        <h1 ref={headerRef}>Analyze what you eat</h1>
+        <div ref={formRef}  className="container">
           <form className="container" onSubmit={finalSearch}>
             <input
-              placeholder="LIST YOUR INGREDIENTS..."
+              placeholder="ENTER: amount + measure + product "
               onChange={analyzeMyFood}
             />
             <button type="submit">Analyze</button>
           </form>
         </div>
         <div className="blocks">
-          <div className="block">
+          <div className="block" ref={mainNutrientsRef}>
             <h3>MAIN NUTRIENTS</h3>
             {myAnalysis?.totalNutrients &&
               Object.values(myAnalysis.totalNutrients)
@@ -132,7 +169,7 @@ function App() {
                 ))}
           </div>
 
-          <div className="block">
+          <div className="block" ref={vitaminsRef}>
             <h3>VITAMINS & MINERALS</h3>
             {myAnalysis?.totalNutrients &&
               Object.values(myAnalysis.totalNutrients)
